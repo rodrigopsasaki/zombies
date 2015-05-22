@@ -16,13 +16,13 @@ class Zombie extends ReLogoTurtle {
 		def winner = maxOneOf ( neighbors ()){
 			count ( humansOn ( it ))
 		}
-
 		face ( winner )
 		forward (0.5)
-
 		if ( count ( humansHere ()) > 0){
 			label = " Brains !"
-			infect ( oneOf ( humansHere ()))
+			def infectee = oneOf ( humansHere ())
+			infect ( infectee )
+			createInfectionTo ( infectee )
 		}
 		else {
 			label = ""

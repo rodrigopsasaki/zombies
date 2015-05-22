@@ -943,5 +943,403 @@ public class ReLogoTurtle extends BaseTurtle{
 		return userLink(oneEnd.getWho(), otherEnd.getWho());
 	}
 
+	/**
+	 * Makes a directed infection from a turtle to the caller then executes a set of
+	 * commands on the created infection.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @param closure
+	 *            a set of commands
+	 * @return created infection
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection createInfectionFrom(Turtle t, Closure closure){
+		zombies.relogo.Infection link = (zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").addEdge(t,this);
+		if (closure != null){
+			this.ask(link,closure);
+		}
+		return link;
+	}
+
+	/**
+	 * Makes a directed infection from a turtle to the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return created infection
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection createInfectionFrom(Turtle t){
+			return createInfectionFrom(t,null);
+	}
+
+	/**
+	 * Makes directed infections from a collection to the caller then executes a set
+	 * of commands on the created infections.
+	 * 
+	 * @param a
+	 *            a collection
+	 * @param closure
+	 *            a set of commands
+	 * @return created infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> createInfectionsFrom(Collection<? extends Turtle> a, Closure closure){
+		AgentSet<zombies.relogo.Infection> links = new AgentSet<zombies.relogo.Infection>();
+		for(Turtle t : a){
+			links.add((zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").addEdge(t,this));
+		}
+		if (closure != null){
+			this.ask(links,closure);
+		}
+		return links;
+	}
+
+	/**
+	 * Makes directed infections from a collection to the caller.
+	 * 
+	 * @param a
+	 *            a collection
+	 * @return created infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> createInfectionsFrom(Collection<? extends Turtle> a){
+		return createInfectionsFrom(a,null);
+	}
+
+	/**
+	 * Makes a directed infection to a turtle from the caller then executes a set of
+	 * commands on the created infection.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @param closure
+	 *            a set of commands
+	 * @return created infection
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection createInfectionTo(Turtle t, Closure closure){
+		zombies.relogo.Infection link = (zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").addEdge(this,t);
+		if (closure != null){
+			this.ask(link,closure);
+		}
+		return link;
+	}
+
+	/**
+	 * Makes a directed infection to a turtle from the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return created infection
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection createInfectionTo(Turtle t){
+			return createInfectionTo(t,null);
+	}
+
+	/**
+	 * Makes directed infections to a collection from the caller then executes a set
+	 * of commands on the created infections.
+	 * 
+	 * @param a
+	 *            a collection
+	 * @param closure
+	 *            a set of commands
+	 * @return created infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> createInfectionsTo(Collection<? extends Turtle> a, Closure closure){
+		AgentSet<zombies.relogo.Infection> links = new AgentSet<zombies.relogo.Infection>();
+		for(Object t : a){
+			if (t instanceof Turtle){
+				links.add((zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").addEdge(this,(Turtle)t));
+			}
+		}
+		if (closure != null){
+			this.ask(links,closure);
+		}
+		return links;
+	}
+
+	/**
+	 * Makes directed infections to a collection from the caller.
+	 * 
+	 * @param a
+	 *            a collection
+	 * @return created infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> createInfectionsTo(Collection<? extends Turtle> a){
+		return createInfectionsTo(a,null);
+	}
+
+	/**
+	 * Queries if there is a directed infection from a turtle to the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return true or false based on whether there is a directed infection from
+	 *         turtle t to the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public boolean inInfectionNeighborQ(Turtle t){
+		return this.getMyObserver().getNetwork("Infection").isPredecessor(t, this);
+	}
+
+	/**
+	 * Returns the agentset with directed infections to the caller.
+	 * 
+	 * @return agentset with directed infections to the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet inInfectionNeighbors(){
+		AgentSet result = new AgentSet();
+		for(Object o : this.getMyObserver().getNetwork("Infection").getPredecessors(this)){
+			result.add(o);
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the directed infection from a turtle to the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return directed infection from turtle t to the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection inInfectionFrom(Turtle t){
+		return (zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").getEdge(t,this);
+	}
+
+	/**
+	 * Returns an agentset of directed infections from other turtles to the caller.
+	 * 
+	 * @return agentset of directed infections from other turtles to the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> myInInfections(){
+		AgentSet<zombies.relogo.Infection> result = new AgentSet<zombies.relogo.Infection>();
+		for(Object o :  this.getMyObserver().getNetwork("Infection").getInEdges(this)){
+			if (o instanceof zombies.relogo.Infection){
+				result.add((zombies.relogo.Infection) o);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns an agentset of directed infections to other turtles from the caller.
+	 * 
+	 * @return agentset of directed infections to other turtles from the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> myOutInfections(){
+		AgentSet<zombies.relogo.Infection> result = new AgentSet<zombies.relogo.Infection>();
+		for(Object o :  this.getMyObserver().getNetwork("Infection").getOutEdges(this)){
+			if (o instanceof zombies.relogo.Infection){
+				result.add((zombies.relogo.Infection) o);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Queries if there is a directed infection to a turtle from the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return true or false based on whether there is a directed infection to
+	 *         turtle t from the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public boolean outInfectionNeighborQ(Turtle t){
+		return this.getMyObserver().getNetwork("Infection").isPredecessor(this, t);
+	}
+
+	/**
+	 * Returns the agentset with directed infections from the caller.
+	 * 
+	 * @return agentset with directed infections from the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet outInfectionNeighbors(){
+		AgentSet result = new AgentSet();
+		for(Object o : this.getMyObserver().getNetwork("Infection").getSuccessors(this)){
+			result.add(o);
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the directed infection to a turtle from the caller.
+	 * 
+	 * @param t
+	 *            a turtle
+	 * @return directed infection to turtle t from the caller
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection outInfectionTo(Turtle t){
+		return (zombies.relogo.Infection)this.getMyObserver().getNetwork("Infection").getEdge(this, t);
+	}
+
+	/**
+	 * Reports true if there is a infection connecting t and the caller.
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public boolean infectionNeighborQ(Turtle t){
+		return this.getMyObserver().getNetwork("Infection").isAdjacent(this, t);
+	}
+
+	/**
+	 * Returns the agentset of all turtles found at the other end of
+	 * infections connected to the calling turtle.
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet infectionNeighbors(){
+		AgentSet result = new AgentSet();
+		for(Object o : this.getMyObserver().getNetwork("Infection").getAdjacent(this)){
+			result.add(o);
+		}
+		return result;
+	}
+
+	/**
+	 * Returns an agentset of the caller's infections.
+	 * 
+	 * @return agentset of the caller's infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> myInfections(){
+		AgentSet<zombies.relogo.Infection> result = new AgentSet<zombies.relogo.Infection>();
+		for(Object o : this.getMyObserver().getNetwork("Infection").getEdges(this)){
+			if (o instanceof zombies.relogo.Infection){
+				result.add((zombies.relogo.Infection)o);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Queries if object is a infection.
+	 * 
+	 * @param o
+	 *            an object
+	 * @return true or false based on whether the object is a infection
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public boolean isInfectionQ(Object o){
+		return (o instanceof zombies.relogo.Infection);
+	}
+
+	/**
+	 * Returns an agentset containing all infections.
+	 * 
+	 * @return agentset of all infections
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public AgentSet<zombies.relogo.Infection> infections(){
+		AgentSet<zombies.relogo.Infection> a = new AgentSet<zombies.relogo.Infection>();
+		for (Object e : this.getMyObserver().getContext().getObjects(zombies.relogo.Infection.class)) {
+			if (e instanceof zombies.relogo.Infection){
+				a.add((zombies.relogo.Infection)e);
+			}
+		}
+		return a;
+	}
+
+	/**
+	 * Returns the infection between two turtles.
+	 * 
+	 * @param oneEnd
+	 *            an integer
+	 * @param otherEnd
+	 *            an integer
+	 * @return infection between two turtles
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection infection(Number oneEnd, Number otherEnd) {
+		return (zombies.relogo.Infection)(this.getMyObserver().getNetwork("Infection").getEdge(turtle(oneEnd),turtle(otherEnd)));
+	}
+
+	/**
+	 * Returns the infection between two turtles.
+	 * 
+	 * @param oneEnd
+	 *            a turtle
+	 * @param otherEnd
+	 *            a turtle
+	 * @return infection between two turtles
+	 */
+	@ReLogoBuilderGeneratedFor("zombies.relogo.Infection")
+	public zombies.relogo.Infection infection(Turtle oneEnd, Turtle otherEnd) {
+		return infection(oneEnd.getWho(), otherEnd.getWho());
+	}
+
+	/**
+	 * Returns the value of the global variable  numHumans .
+	 *
+	 * @return the value of the global variable  numHumans 
+	 */
+	@ReLogoBuilderGeneratedFor("global:  numHumans ")
+	public Object get numHumans (){
+		return repast.simphony.relogo.ReLogoModel.getInstance().getModelParam(" numHumans ");
+	}
+
+	/**
+	 * Sets the value of the global variable  numHumans .
+	 *
+	 * @param value
+	 *            a value
+	 */
+	@ReLogoBuilderGeneratedFor("global:  numHumans ")
+	public void set numHumans (Object value){
+		repast.simphony.relogo.ReLogoModel.getInstance().setModelParam(" numHumans ",value);
+	}
+
+	/**
+	 * Returns the value of the global variable  numZombies .
+	 *
+	 * @return the value of the global variable  numZombies 
+	 */
+	@ReLogoBuilderGeneratedFor("global:  numZombies ")
+	public Object get numZombies (){
+		return repast.simphony.relogo.ReLogoModel.getInstance().getModelParam(" numZombies ");
+	}
+
+	/**
+	 * Sets the value of the global variable  numZombies .
+	 *
+	 * @param value
+	 *            a value
+	 */
+	@ReLogoBuilderGeneratedFor("global:  numZombies ")
+	public void set numZombies (Object value){
+		repast.simphony.relogo.ReLogoModel.getInstance().setModelParam(" numZombies ",value);
+	}
+
+	/**
+	 * Returns the value of the global variable  gestationPeriod .
+	 *
+	 * @return the value of the global variable  gestationPeriod 
+	 */
+	@ReLogoBuilderGeneratedFor("global:  gestationPeriod ")
+	public Object get gestationPeriod (){
+		return repast.simphony.relogo.ReLogoModel.getInstance().getModelParam(" gestationPeriod ");
+	}
+
+	/**
+	 * Sets the value of the global variable  gestationPeriod .
+	 *
+	 * @param value
+	 *            a value
+	 */
+	@ReLogoBuilderGeneratedFor("global:  gestationPeriod ")
+	public void set gestationPeriod (Object value){
+		repast.simphony.relogo.ReLogoModel.getInstance().setModelParam(" gestationPeriod ",value);
+	}
+
 
 }

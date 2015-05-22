@@ -30,5 +30,9 @@ class UserObserver extends ReLogoObserver{
 		ask ( zombies ()){ step () }
 		ask ( humans ()){ step () }
 	}
+
+	def remainingHumans (){
+		count ( humans ())
+	}
 	
 }
